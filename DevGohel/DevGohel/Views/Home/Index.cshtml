@@ -1,31 +1,70 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="content-start">
+    <div class="col-lg-12 content-head">
+        <div class="input-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+            <input id="Search" name="Search" type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <a id="searchLink" name="searchLink" class="btn btn-website"><i class="glyphicon glyphicon-search"></i></a>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-12 content-data">
+        <div class="head">
+            Play Around This
+        </div>
+        <div>
+            Information about this fanomeno
+            Information about this fanomeno
+            Information about this fanomeno
+            Information about this fanomeno
+            Information about this fanomeno
+        </div>
+        <div>
+            Information about this fanomeno
+            Information about this fanomeno
+            Information about this fanomeno
+            Information about this fanomeno
+            Information about this fanomeno
+        </div>
+    </div>
+ 
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var inputSearch = $('input#Search');
+            inputSearch.on("keyup", function () {
+                var btnSearch = $("a#searchLink");
+                //btnSearch.addClass("disabled");
+
+                var inputstr = $(this).val();
+                var val = inputstr.replace(/[^a-z0-9\s]/gi, '-').replace(/[_\s]/g, '-')
+
+                var searchLink = $("#searchLink");
+                searchLink.removeAttr('href')
+
+                searchLink.attr('href', '/' + val);
+
+                if (inputstr.length > 0) {
+                    btnSearch.text("Searching...")
+                }
+                else {
+                    btnSearch.text("Search it")
+                }
+
+            });
+
+            inputSearch.on("change", function () {
+                var inputstr = $(this).val();
+                var val = inputstr.replace(/[^a-z0-9\s]/gi, '-').replace(/[_\s]/g, '-')
+                window.location.href = val;
+            });
+        });
+    </script>
+}

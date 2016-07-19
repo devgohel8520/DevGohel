@@ -1,24 +1,154 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-color:#EBEDEF;
+}
+*
+{
+    font-family:'Century Gothic';
+    font-size:12px;
+}
+.top-twenty
+{
+    margin-top:20px;
+}
+.a-link{
+    color:#fff;
+    text-decoration:none;
+}
+.a-link:hover,.a-link:active{
+    color:#fff;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.top-menu{
+    padding:5px;
+    /*background-color:#6D7993;1*/
+    background-color:#34495E;
+    border-bottom:1px solid #001e80;
+    box-sizing:border-box;
+    color:#fff;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.content-start
+{
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.content-lable{
+    text-align:right;
+    font-size:11px;
+    padding-bottom:5px;
+}
+
+.content-head
+{
+    border-radius:2px;
+    padding:10px;
+    background-color:#FFF;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin-bottom:10px;
+}
+.content-head  div{
+    font-size:17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content-data
+{
+    background-color:#FFF;
+    padding:10px;
+    border-radius:2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin-bottom:20px;
+    border-bottom:1px solid #e3e4e8;
+}
+.content-data div{
+    font-size:14px;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;
+    text-overflow: ellipsis;*/
+}
+.content-data div.head{
+    font-size:18px;
+    font-weight:bold;
+    color:#808B96;
+    margin-bottom:3px;
+}
+
+.content-data-youtube
+{
+    background-color:#FFF;
+    border-radius:2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+.content-data-youtube .video{
+    margin:0px;
+}
+
+
+.content-data-youtube-text
+{
+    background-color:#FFF;
+    padding:10px;
+    border-radius:2px;
+}
+.content-data-youtube-text div{
+    font-size:14px;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;
+    text-overflow: ellipsis;*/
+}
+.content-data-youtube-text div.head{
+    font-size:18px;
+    font-weight:bold;
+    color:#808B96;
+    margin-bottom:3px;
+}
+
+
+
+/*Admins Style*/
+.content-start-admin{
+    padding-top:60px;
+}
+
+.login-middle
+{
+    width:450px;
+    margin:0 auto;
+    padding:20px;
+    background-color:#FFF;
+    border-radius:2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-bottom:1px solid #e3e4e8;
+}
+
+.wedgrid-header
+{
+}
+.webgrid-row-style {
+        padding: 3px 7px 2px;
+    }
+     .webgrid-alternating-row {
+        padding: 3px 7px 2px;
+    }
+/*Media for admin*/
+@media all and (max-width: 480px) { 
+.login-middle
+{
+    width:auto;
+    margin:0 auto;
+     padding:20px;
+    background-color:#FFF;
+    border-radius:2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-bottom:1px solid #e3e4e8;
+}
+   
 }
