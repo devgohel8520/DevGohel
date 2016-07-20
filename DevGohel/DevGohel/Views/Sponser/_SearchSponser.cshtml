@@ -1,0 +1,18 @@
+﻿@using PagedList
+@model IPagedList<DevGohel.Models.Sponser>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SponserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SponserId })
+        </td>
+    </tr>
+}

@@ -62,11 +62,13 @@
 .content-data
 {
     background-color:#FFF;
-    padding:10px;
     border-radius:2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     margin-bottom:20px;
     border-bottom:1px solid #e3e4e8;
+}
+.content-data-x {
+    padding:10px;
 }
 .content-data div{
     font-size:14px;
@@ -77,13 +79,14 @@
 .content-data div.head{
     font-size:18px;
     font-weight:bold;
-    color:#808B96;
+    color:#566573;
     margin-bottom:3px;
 }
 
 .content-data-youtube
 {
     background-color:#FFF;
+    margin-bottom:20px;
     border-radius:2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 }
@@ -107,7 +110,7 @@
 .content-data-youtube-text div.head{
     font-size:18px;
     font-weight:bold;
-    color:#808B96;
+    color:#566573;
     margin-bottom:3px;
 }
 
@@ -138,6 +141,24 @@
      .webgrid-alternating-row {
         padding: 3px 7px 2px;
     }
+
+
+.content-boxi
+{
+    background-color:#FFF;
+    padding:5px;
+    border-radius:2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin-bottom:20px;
+    border-bottom:1px solid #e3e4e8;
+}
+a.boxi{
+    font-size:18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration:none;
+}
 /*Media for admin*/
 @media all and (max-width: 480px) { 
 .login-middle

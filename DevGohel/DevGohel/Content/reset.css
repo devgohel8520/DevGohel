@@ -91,7 +91,7 @@ fieldset[disabled] .btn-website.focus {
 /*Youtube video*/
 .videoWrapper {
 	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
+	padding-bottom: 52%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
 }

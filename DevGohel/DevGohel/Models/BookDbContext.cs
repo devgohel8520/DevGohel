@@ -87,6 +87,7 @@ namespace DevGohel.Models
         public string Body { get; set; }
         [Required(ErrorMessage = "*")]
         public TDataType Type { get; set; }
+        public string ExtraText { get; set; }
         [Required(ErrorMessage = "*")]
         public DateTime Created { get; set; }
         [Required(ErrorMessage = "*")]
@@ -95,6 +96,8 @@ namespace DevGohel.Models
         [ForeignKey("Topic")]
         public long TopicId { get; set; }
         public Topic Topic { get; set; }
+
+        public int OrderId { get; set; }
     }
 
     public class Visitor
@@ -112,7 +115,10 @@ namespace DevGohel.Models
     public class Sponser
     {
         public int SponserId { get; set; }
+        [Required(ErrorMessage = "*")]
         public string Title { get; set; }
+        [AllowHtml]
+        [Required(ErrorMessage = "*")]
         public string Body { get; set; }
         public bool IsActive { get; set; }
     }
@@ -132,9 +138,10 @@ namespace DevGohel.Models
     }
     public enum BgColor
     {
-        Red,
-        Yellow,
-        Green
+        CornflowerBlue,
+        DarkSlateBlue,
+        LightGreen,
+        MidnightBlue
     }
     public enum TxColor
     {

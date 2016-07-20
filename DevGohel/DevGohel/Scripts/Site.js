@@ -52,3 +52,101 @@ function submitUniversal(btnSubmit, target) {
         }
     });
 }
+
+function GetMaxNumber(urlAction) {
+    var errorDiv = $("#errorD");
+    $.ajax({
+        type: "GET",
+        url: urlAction,
+        data: { topicId: $("input#TopicId").val() },
+        error: function (xhr, status, error) {
+            errorDiv.text(error);
+        },
+        success: function (data) {
+            errorDiv.text(data);
+            $("input#OrderId").val(data);
+        }
+    })
+}
+
+function CreateProfileData(btnSubmit) {
+
+    tinyMCE.triggerSave();
+
+    $("#Body").html($("#Body_ifr").html());
+
+    if (!validateForm(btnSubmit))
+        return false;
+
+    var btnSubmitvar = $(btnSubmit);
+
+    var $form = btnSubmitvar.parents('form');
+
+    $(btnSubmit).attr("disabled", "disabled");
+
+    var errorDiv = $("#errorD");
+    errorDiv.show();
+    errorDiv.text("wait...");
+
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        error: function (xhr, status, error) {
+            errorDiv.text(error);
+            btnSubmitvar.removeAttr("disabled");
+        },
+        success: function (data) {
+            btnSubmitvar.removeAttr('disabled');
+            if (data == "") {
+                location.href = '/Profile/PIndex';
+            }
+            else {
+                errorDiv.text(data);
+                errorDiv.show();
+            }
+        }
+    });
+    return false;
+}
+
+function CreateTdatas(btnSubmit, modalID) {
+
+    tinyMCE.triggerSave();
+
+    $("#Body").html($("#Body_ifr").html());
+
+    if (!validateForm(btnSubmit))
+        return false;
+
+    var btnSubmitvar = $(btnSubmit);
+
+    var $form = btnSubmitvar.parents('form');
+
+    $(btnSubmit).attr("disabled", "disabled");
+
+    var errorDiv = $("#errorD");
+    errorDiv.show();
+    errorDiv.text("wait...");
+
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        error: function (xhr, status, error) {
+            errorDiv.text(error);
+            btnSubmitvar.removeAttr("disabled");
+        },
+        success: function (data) {
+            btnSubmitvar.removeAttr('disabled');
+            if (data == "") {
+                location.href = '/Topic/Details/' + modalID;
+            }
+            else {
+                errorDiv.text(data);
+                errorDiv.show();
+            }
+        }
+    });
+    return false;
+}

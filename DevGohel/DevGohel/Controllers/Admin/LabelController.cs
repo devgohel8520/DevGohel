@@ -38,7 +38,7 @@ namespace DevGohel.Controllers.Admin
 
             if (Search != null)
             {
-                var model = _db.Labels.Where(d => d.Name.Contains(Search) && UserId.Equals(UserId)).OrderByDescending(o => o.Name).ToList();
+                var model = _db.Labels.Where(d => d.Name.Contains(Search)).OrderByDescending(o => o.Name).ToList();
                 return View(model.ToPagedList(page ?? 1, 10));
             }
             else
@@ -52,7 +52,7 @@ namespace DevGohel.Controllers.Admin
         {
             if (GetCookiesInformation())
             {
-                var model = _db.Labels.Where(d => d.Name.Contains(Search) && UserId.Equals(UserId)).OrderByDescending(o => o.Name).ToList();
+                var model = _db.Labels.Where(d => d.Name.Contains(Search)).OrderByDescending(o => o.Name).ToList();
                 return PartialView(model.ToPagedList(page ?? 1, 10));
             }
             else
@@ -146,7 +146,6 @@ namespace DevGohel.Controllers.Admin
             if (!GetCookiesInformation())
                 return RedirectToAction("AIndex", "Author", null);
 
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -161,13 +160,13 @@ namespace DevGohel.Controllers.Admin
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed([Bind(Include = "LabelId")] Label label)
         {
             if (!GetCookiesInformation())
                 return RedirectToAction("AIndex", "Author", null);
 
-            Label label = _db.Labels.Find(id);
-            _db.Labels.Remove(label);
+            Label labelGet = _db.Labels.Find(label.LabelId);
+            _db.Labels.Remove(labelGet);
             _db.SaveChanges();
             return Json("");
         }
