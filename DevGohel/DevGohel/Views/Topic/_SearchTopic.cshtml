@@ -1,0 +1,25 @@
+﻿@using PagedList
+@model IPagedList<DevGohel.Models.Topic>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="ellipsetext">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="ellipsetext">
+            @Html.DisplayFor(modelItem => item.Ename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TopicId }) |
+            @Html.ActionLink("Detail", "Detail", new { id = item.TopicId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.TopicId })
+        </td>
+    </tr>
+}

@@ -23,6 +23,13 @@
    margin: 0 !important;
 }
 
+.ellipsetext {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    width:150px;
+    height:50px;
+}
+
 .top-menu{
     padding:5px;
     /*background-color:#6D7993;1*/
@@ -70,11 +77,13 @@
 .content-data-x {
     padding:10px;
 }
+.content-data-x .files a, i{
+    cursor:pointer;
+    font-size:14px;
+}
+
 .content-data div{
     font-size:14px;
-    /*white-space: nowrap;*/
-    /*overflow: hidden;
-    text-overflow: ellipsis;*/
 }
 .content-data div.head{
     font-size:18px;

@@ -1,0 +1,98 @@
+﻿@model DevGohel.Models.Topic
+
+@{
+    ViewBag.Title = "Add Topic";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-start-admin">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Add Topic</h3>
+        </div>
+        <div class="col-md-12">
+            @using (Ajax.BeginForm("Create", new AjaxOptions { }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="alert-danger error-list">
+                    <div id="errorD" style="padding:10px; margin-bottom:20px; display:none;">
+
+                    </div>
+                </div>
+                <div class="form-group input-group input-group-lg" title="Enter Topic Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "ENTER NEW TOPIC NAME" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Search Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.Ename, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = "AUTO NAME PROPERTY" } })
+                    @Html.ValidationMessageFor(model => model.Ename, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Dispaly Background Color Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EnumDropDownListFor(model => model.BgColor, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BgColor, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Display Text Color Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EnumDropDownListFor(model => model.TxColor, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TxColor, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Select Label">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.DropDownList("LabelId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LabelId, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group text-right">
+                    <input id="submit" type="submit" value="Save" onclick="submitUniversal(this, '@Url.Action("TIndex","Topic")');" class="btn btn-info" />
+                    <a href="@Url.Action("TIndex","Topic")" class="btn btn-default">
+                        Back
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12 content-data">
+                <div class="content-data-x nopadding">
+                    <h3 id="bodyName">Profile Name</h3>
+                    <p id="bodytext">
+                        Your profile information...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var contentBox = $("div.content-data")
+            contentBox
+                .css("background-color", $('#BgColor option:selected').text());
+            contentBox
+                .find("h3, p")
+                .css("color", $('#TxColor option:selected').text());
+
+            $("input#Name").on("keyup", function () {
+                var inputstr = $(this).val();
+                var bodyName = $("#bodyName");
+
+                bodyName.text(inputstr);
+                var val = inputstr.replace(/[^a-z0-9\s]/gi, '-').replace(/[_\s]/g, '-')
+                $("input#Ename").val(val);
+                bodyName.removeAttr("href");
+            });
+
+            $("#BgColor").change(function () {
+                var bgColor = $("#BgColor option:selected").text();
+                $("div.content-data").css("background-color", bgColor);
+            });
+            $("#TxColor").change(function () {
+                var txColor = $("#TxColor option:selected").text();
+                $("div.content-data").find("h3, p").css("color", txColor);
+            });
+        });
+
+    </script>
+}

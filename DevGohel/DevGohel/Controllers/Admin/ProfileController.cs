@@ -34,12 +34,11 @@ namespace DevGohel.Controllers.Admin
         {
             if (!GetCookiesInformation())
                 return RedirectToAction("AIndex", "Author", null);
-            Topic topic = _db.Topics.Include(d => d.TDatas).SingleOrDefault(d => d.TopicType == TopicType.Author);
+            Topic topic = _db.Topics.Include(d => d.TDatas).FirstOrDefault(d => d.TopicType == TopicType.Author && d.AuthorId == UserId);
 
             return View(topic);
 
         }
-
 
         public ActionResult Create()
         {
@@ -51,7 +50,7 @@ namespace DevGohel.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Ename,,BgColor,TxColor,LabelId")] Topic topic)
+        public ActionResult Create([Bind(Include = "Name,Ename,BgColor,TxColor,LabelId")] Topic topic)
         {
             if (!GetCookiesInformation())
                 return RedirectToAction("AIndex", "Author", null);

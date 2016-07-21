@@ -10,7 +10,7 @@
             <h4>Are you sure want to remove this?</h4>
         </div>
         <div class="col-md-12">
-            @using (Ajax.BeginForm("DeleteP", new AjaxOptions { }))
+            @using (Ajax.BeginForm("Delete", new AjaxOptions { }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.TopicId)
@@ -31,8 +31,8 @@
                 </textarea>
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger form-control-feedback" })
                 <div class="form-group text-right top-twenty">
-                    <input id="submit" type="button" value="Delete" onclick="submitUniversal(this, '@Url.Action("PIndex","Profile")');" class="btn btn-danger" />
-                    <a href="@Url.Action("PIndex","Profile")" class="btn btn-default">
+                    <input id="submit" type="button" value="Delete" onclick="submitUniversal(this,'@Url.Action("Detail", "Topic", new { id = Model.TopicId })');" class="btn btn-danger" />
+                    <a href="@Url.Action("Detail", "Topic", new { id = Model.TopicId})" class=" btn btn-default">
                         Back
                     </a>
                 </div>

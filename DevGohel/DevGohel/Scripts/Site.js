@@ -110,7 +110,7 @@ function CreateProfileData(btnSubmit) {
     return false;
 }
 
-function CreateTdatas(btnSubmit, modalID) {
+function CreateTdatas(btnSubmit, target) {
 
     tinyMCE.triggerSave();
 
@@ -140,7 +140,7 @@ function CreateTdatas(btnSubmit, modalID) {
         success: function (data) {
             btnSubmitvar.removeAttr('disabled');
             if (data == "") {
-                location.href = '/Topic/Details/' + modalID;
+                location.href = target;
             }
             else {
                 errorDiv.text(data);

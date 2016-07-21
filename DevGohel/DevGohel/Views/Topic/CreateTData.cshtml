@@ -1,0 +1,77 @@
+﻿@model DevGohel.Models.TData
+
+@{
+    ViewBag.Title = "Add Profile Information";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-start-admin">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Profile Information</h4>
+        </div>
+        <div class="col-md-12">
+            @using (Ajax.BeginForm("CreateProfile", new AjaxOptions { }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.TopicId)
+                <div class="alert-danger error-list">
+                    <div id="errorD" style="padding:10px; margin-bottom:20px; display:none;">
+
+                    </div>
+                </div>
+                <div class="form-group input-group input-group-lg" title="Enter Topic Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "ENTER NEW INFORMATION TITLE" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Search Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = "AUTO ORDER PROPERTY" } })
+                    @Html.ValidationMessageFor(model => model.OrderId, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Display Text Color Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg" title="Enter Topic Name">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.ExtraText, new { htmlAttributes = new { @class = "form-control", @placeholder = "Paste Link", @disabled = "disabled" } })
+                </div>
+                <textarea id="Body" name="Body" class="form-control jqte-test" rows="15" type="text" placeholder="Write something about topic information"></textarea>
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger form-control-feedback" })
+                <div class="form-group text-right top-twenty">
+                    <input id="submit" type="submit" value="Save" onclick="CreateProfileData(this);" class="btn btn-info" />
+                    <a href="@Url.Action("TIndex","Topic",null)" class="btn btn-default">
+                        Back
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/editor.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            GetMaxNumber('@Url.Action("GetMaxOrderNo","Profile")');
+            $("input#Title").on("change", function () {
+                GetMaxNumber('@Url.Action("GetMaxOrderNo","Profile")');
+            });
+
+            $('#Type').on("change", function () {
+                var selectedType = $(this).val();
+                if(selectedType!=0)
+                {
+                    $('input#ExtraText').removeAttr('disabled');
+                }
+                else
+                {
+                    $('input#ExtraText').attr('disabled','disabled');
+                }
+            });
+        });
+    </script>
+}

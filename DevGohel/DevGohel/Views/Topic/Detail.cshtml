@@ -1,0 +1,193 @@
+﻿@using DevGohel.Models
+@model DevGohel.Models.Topic
+
+@{
+    ViewBag.Title = "Topic Data Information";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-start-admin">
+    <div class="row">
+        <div class="col-md-12">
+
+            @if (Model == null)
+            {
+                <a href="@Url.Action("Create", "TData", new { id= Model.TopicId })" class="btn btn-default col-md-12">+ Profile Information</a>
+            }
+            else
+            {
+                <div class="row">
+                    @Html.HiddenFor(model => model.BgColor)
+                    @Html.HiddenFor(model => model.TxColor)
+                    <div class="col-md-12">
+                        <div id="contentBox" class="col-md-12 content-boxi">
+                            <div class="col-lg-8">
+                                <a id="bodyName" class="boxi" target="_blank" href='@Url.Action("Index", "Search", new { search=Model.Ename.ToString()})'>@Model.Name</a>
+                            </div>
+                            <div class="col-lg-4 text-right" style="padding:1px;">
+                                <a href="@Url.Action("TIndex", "Topic", new { id = Model.TopicId })" title="Back to Topic" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-backward"></span>
+                                </a>
+                                <a class="btn btn-default btn-xs" title="Add Topic Information" href="@Url.Action("Create", "TData", new { id = @Model.TopicId})">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="topicinfo" class="co-md-12">
+                    @if (Model.TDatas != null)
+                    {
+                        foreach (var data in Model.TDatas)
+                        {
+                            if (data.Type == TDataType.HtmlText)
+                            {
+                                <div class="col-lg-12 content-data" title="@data.Name">
+                                    <div class="row">
+                                        <div class="col-lg-12 content-data-x">
+                                            <div class="head">@data.Name</div>
+                                            <div>
+                                                @Html.Raw(@data.Body)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-right bg-danger" style="padding:5px;">
+                                        <a href="@Url.Action("Edit", "TData", new { id = data.TdataId})" title="Edit" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </a>
+
+                                        <a href="@Url.Action("Delete", "TData", new { id = data.TdataId })" title="Delete" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                            else if (data.Type == TDataType.Youtube)
+                            {
+                                <div class="col-lg-12 content-data-youtube">
+                                    <div class="row">
+                                        <div class="col-lg-4 content-data-youtube-text">
+                                            <div class="head">
+                                                @data.Name
+                                            </div>
+                                            <div>
+                                                @Html.Raw(@data.Body)
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 nopadding">
+                                            <div class="videoWrapper">
+                                                <iframe width="640" height="360" src="http://www.youtube.com/embed/@data.ExtraText?rel=0&hd=1" frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row text-right bg-danger" style="padding:5px;">
+                                        <a href="@Url.Action("Edit", "TData", new { id = data.TdataId })" title="Edit" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </a>
+
+                                        <a href="@Url.Action("Delete", "TData", new { id = data.TdataId })" title="Delete" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                            else if (data.Type == TDataType.Files)
+                            {
+                                <div class="col-lg-12 content-data" title="@data.Name">
+                                    <div class="row">
+                                        <div class="col-lg-12 content-data-x">
+                                            <div class="head">
+                                                @data.Name
+                                            </div>
+                                            <div>
+                                                @Html.Raw(@data.Body)
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 content-data-x bg-warning" style="border-top:1px solid #D1D1D1;">
+                                            <div class="files btn-link" style="text-align:center;">
+                                                <a href="@data.ExtraText">
+                                                    <i class="glyphicon glyphicon-download"></i> Download
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-right bg-danger" style="padding:5px;">
+                                        <a href="@Url.Action("Edit", "TData", new { id = data.TdataId })" title="Edit" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </a>
+
+                                        <a href="@Url.Action("Delete", "TData", new { id = data.TdataId })" title="Delete" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                            else if (data.Type == TDataType.Website)
+                            {
+                                <div class="col-lg-12 content-data" title="@data.Name">
+                                    <div class="row">
+                                        <div class="col-lg-12 content-data-x">
+                                            <div class="head">
+                                                @data.Name
+                                            </div>
+                                            <div>
+                                                @Html.Raw(@data.Body)
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 content-data-x bg-info" style="border-top:1px solid #D1D1D1;">
+                                            <div class="files btn-link" style="text-align:center;">
+                                                <a href="@data.ExtraText" target="_blank">
+                                                        <i class="glyphicon glyphicon-download"></i> Want to visit?
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-right bg-danger" style="padding:5px;">
+                                        <a href="@Url.Action("Edit", "TData", new { id = data.TdataId })" title="Edit" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </a>
+
+                                        <a href="@Url.Action("Delete", "TData", new { id = data.TdataId })" title="Delete" class="btn btn-default btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+
+            var contentBox = $("div#contentBox")
+            contentBox
+                .css("background-color", $('#BgColor').val());
+            contentBox
+                .find("a.boxi")
+                .css("color", $('#TxColor').val());
+
+
+            $("#BgColor").change(function () {
+                var bgColor = $("#BgColor option:selected").text();
+                $("div#content-box").css("background-color", bgColor);
+            });
+            $("#TxColor").change(function () {
+                var txColor = $("#TxColor option:selected").text();
+                $("div#content-box")
+                    .find("a.boxi")
+                    .css("color", txColor);
+            });
+        });
+    </script>
+}

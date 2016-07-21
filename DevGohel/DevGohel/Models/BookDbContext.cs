@@ -154,7 +154,7 @@ namespace DevGohel.Models
         HtmlText,
         Website,
         Youtube,
-
+        Files
     }
 
 }

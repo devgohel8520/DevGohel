@@ -133,6 +133,7 @@
     <Compile Include="Controllers\Admin\LabelController.cs" />
     <Compile Include="Controllers\Admin\ProfileController.cs" />
     <Compile Include="Controllers\Admin\SponserController.cs" />
+    <Compile Include="Controllers\Admin\TDataController.cs" />
     <Compile Include="Controllers\Admin\TopicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -480,10 +481,19 @@
     <Content Include="Scripts\tinymce\plugins\sh4tinymce\fonts\sh4tinymce.woff" />
     <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Profile\DeleteP.cshtml" />
+    <Content Include="Views\Topic\TIndex.cshtml" />
+    <Content Include="Views\Topic\_SearchTopic.cshtml" />
+    <Content Include="Views\Topic\Create.cshtml" />
+    <Content Include="Views\Topic\Edit.cshtml" />
+    <Content Include="Views\Topic\Delete.cshtml" />
+    <Content Include="Views\Topic\CreateTData.cshtml" />
+    <Content Include="Views\Topic\Detail.cshtml" />
+    <Content Include="Views\TData\Create.cshtml" />
+    <Content Include="Views\TData\Edit.cshtml" />
+    <Content Include="Views\TData\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Topic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
