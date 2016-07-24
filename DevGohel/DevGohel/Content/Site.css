@@ -13,9 +13,11 @@
 .a-link{
     color:#fff;
     text-decoration:none;
+    cursor:pointer;
 }
 .a-link:hover,.a-link:active{
     color:#fff;
+    text-decoration:none;
 }
 
 .nopadding {
@@ -124,6 +126,38 @@
 }
 
 
+.content-data-hp
+{
+    background-color:#FFF;
+    border-radius:2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-bottom:1px solid #e3e4e8;
+    cursor:pointer;
+}
+.content-data-hp:hover
+{
+    background-color:#F1F1F1;
+}
+.content-data-hp-x {
+    padding:10px;
+}
+.content-data-hp-x .files a, i{
+    cursor:pointer;
+    font-size:14px;
+}
+
+.content-data-hp div{
+    font-size:14px;
+}
+.content-data-hp div.head{
+    font-size:18px;
+    font-weight:bold;
+    color:#566573;
+    margin-bottom:3px;
+     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /*Admins Style*/
 .content-start-admin{

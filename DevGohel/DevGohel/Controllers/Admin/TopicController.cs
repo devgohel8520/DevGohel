@@ -203,7 +203,6 @@ namespace DevGohel.Controllers.Admin
             if (topic != null && topic.AuthorId == UserId)
             {
                 ViewBag.LabelId = new SelectList(_db.Labels, "LabelId", "Name", topic.LabelId);
-                ViewBag.TagId = new SelectList(_db.Topics, "TopicId", "Name", topic.TopicId);
                 return View(topic);
             }
             else

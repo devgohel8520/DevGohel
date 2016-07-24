@@ -15,6 +15,7 @@ namespace DevGohel.Models
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<Sponser> Sponsers { get; set; }
         public DbSet<TDataFile> TDataFiles { get; set; }
+        public DbSet<FeedBack> FeedBacks { get; set; }
 
     }
 
@@ -130,6 +131,35 @@ namespace DevGohel.Models
         public string FullName { get; set; }
         public bool IsActive { get; set; }
     }
+
+
+    public class FeedBack
+    {
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [StringLength(30, ErrorMessage = "<30")]
+        public string FullName { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        public string Mobile { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [EmailAddress(ErrorMessage = "X")]
+        public string EmailId { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [StringLength(500, ErrorMessage = "X")]
+        public string Body { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public bool Status { get; set; }
+    }
+
 
     public enum TopicType
     {

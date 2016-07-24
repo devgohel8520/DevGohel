@@ -1,7 +1,175 @@
-﻿
+﻿@using DevGohel.Models
+@model DevGohel.Models.Topic
 @{
     ViewBag.Title = "Index";
 }
+<div class="content-start">
+    <div class="content-lable">
+        <div class="btn btn-xs" style="background-color:@Model.BgColor; color:@Model.TxColor;">
+            @Model.Label.Name
+        </div>
+    </div>
+    <div class="col-lg-12 content-head">
+        <div>
+            @Model.Name
+        </div>
+    </div>
+    <div id="topicinfo" class="co-md-12">
+        @if (Model.TDatas != null)
+        {
+            foreach (var data in Model.TDatas)
+            {
+                if (data.Type == TDataType.HtmlText)
+                {
+                    <div class="col-lg-12 content-data" title="@data.Name">
+                        <div class="row">
+                            <div class="col-lg-12 content-data-x">
+                                <div class="head">@data.Name</div>
+                                <div>
+                                    @Html.Raw(@data.Body)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (data.Type == TDataType.Youtube)
+                {
+                    <div class="col-lg-12 content-data-youtube">
+                        <div class="row">
+                            <div class="col-lg-4 content-data-youtube-text">
+                                <div class="head">
+                                    @data.Name
+                                </div>
+                                <div>
+                                    @Html.Raw(@data.Body)
+                                </div>
+                            </div>
+                            <div class="col-lg-8 nopadding">
+                                <div class="videoWrapper">
+                                    <iframe width="640" height="360" src="http://www.youtube.com/embed/@data.ExtraText?rel=0&hd=1" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
 
-<h2>Index</h2>
+                        </div>
+                    </div>
+                }
+                else if (data.Type == TDataType.Files)
+                {
+                    <div class="col-lg-12 content-data" title="@data.Name">
+                        <div class="row">
+                            <div class="col-lg-12 content-data-x">
+                                <div class="head">
+                                    @data.Name
+                                </div>
+                                <div>
+                                    @Html.Raw(@data.Body)
+                                </div>
+                            </div>
+                            <div class="col-lg-12 content-data-x" style="border-top:1px solid #D1D1D1;">
+                                <div class="files btn-link" style="text-align:center;">
+                                    <a href="@data.ExtraText">
+                                        <i class="glyphicon glyphicon-download"></i> Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (data.Type == TDataType.Website)
+                {
+                    <div class="col-lg-12 content-data" title="@data.Name">
+                        <div class="row">
+                            <div class="col-lg-12 content-data-x">
+                                <div class="head">
+                                    @data.Name
+                                </div>
+                                <div>
+                                    @Html.Raw(@data.Body)
+                                </div>
+                            </div>
+                            <div class="col-lg-12 content-data-x" style="border-top:1px solid #D1D1D1;">
+                                <div class="files btn-link" style="text-align:center;">
+                                    <a href="@data.ExtraText" target="_blank">
+                                        <i class="glyphicon glyphicon-download"></i> Want to visit?
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <div class="col-md-12 content-boxi">
+        <div class="text-center">
+            @if (!Model.AuthorId.Equals(0) && Model.TopicType == TopicType.Topic)
+            {
+                @Html.Raw("by " + Model.Author.Name.ToString())
+            }
+            else
+            {
+                @Html.Raw("I'm trying to serve you better.")
+            }
+        </div>
+    </div>
+    @if (ViewBag.Advertise != null)
+    {
+        <div class="col-lg-12 content-data">
+            <div class="row">
+                <div class="col-lg-12 content-data-x">
+                    <div class="head">
+                        Sponser
+                    </div>
+                    <div>
+                        @Html.Raw(ViewBag.Advertise)
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 
+    <div class="col-lg-12 content-data">
+        <div class="row">
+            <div class="content-data-x">
+                <div class="text-center">
+                    <a class="btn btn-default btn-xs btn-space" href="@Url.Action("Feedback","Home")">
+                        FEEDBACK
+                    </a>
+                    <a class="btn btn-default btn-xs btn-space" href="/devendra">
+                        ABOUT ME
+                    </a>
+                    <a class="btn btn-default btn-xs btn-space" href="@Url.Action("Contact", "Home")">
+                        CONTACT ME
+                    </a>
+                    <a class="btn btn-default btn-xs btn-space" href="https://www.youtube.com/channel/UCd6sD2lsL3k3UzONHMpVp9w" target="_blank">
+                        YOUTUBE VIDEOS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="gotop" class="gotop">
+    <a href="#home">
+        <span class="glyphicon glyphicon-circle-arrow-up"></span>
+    </a>
+</div>
+@section Scripts
+{
+    <script>
+        $('#gotop').stop(true, true).fadeOut();
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop()) {
+                $('#gotop:hidden').stop(true, true).fadeIn();
+            } else {
+                $('#gotop').stop(true, true).fadeOut();
+            }
+        });
+
+        $(document).ready(function () {
+
+        });
+    </script>
+}

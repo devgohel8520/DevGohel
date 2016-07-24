@@ -88,10 +88,13 @@ fieldset[disabled] .btn-website.focus {
 }
 
 
+.btn-space{
+	margin:2px;
+}
 /*Youtube video*/
 .videoWrapper {
 	position: relative;
-	padding-bottom: 52%; /* 16:9 */
+	padding-bottom: 53%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
 }
@@ -101,4 +104,19 @@ fieldset[disabled] .btn-website.focus {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+/*scrolling back to top*/
+.gotop
+{
+	position:fixed;
+	bottom:5px;
+	right:5px;
+	z-index:999;
+}
+.gotop a span
+{
+	font-size: 2em;
+	color:#aaa;
+	padding-top:5px;
 }

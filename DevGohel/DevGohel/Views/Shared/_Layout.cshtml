@@ -6,13 +6,12 @@
     <link rel="shortcut icon" href="/lOGO.ico">
     <title>Devendra Gohel - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="container-fluid">
+    <div id="home" class="container-fluid">
         <div class="row top-menu">
-            <div class="container">
-                @Html.ActionLink("DEVENDRA GOHEL", "Index", "Home", new { @class = "a-link" } )
+            <div class="container" title="back to home page">
+                <a class="a-link" href="/">DEVENDRA GOHEL</a>
             </div>
         </div>
     </div>
@@ -21,14 +20,36 @@
     </div>
     <div class="container-fluid" style="margin-top:30px;">
         <div class="row">
-            <div style="text-align:center; margin-bottom:20px;">
+            <div style="text-align:center;  margin-bottom:10px;">
                 &copy; @DateTime.Now.Year Devendra Gohel. All contents are copyright.
+            </div>
+            <div style="text-align:center;  margin-bottom:20px;">
+                <a href="@Url.Action("Sitemap","Home",null)">sitemap</a>
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
+    <script>
+    $(document).ready(function () {
+        $('a[href*="#"]:not([href="#"])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 500);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

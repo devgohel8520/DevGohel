@@ -160,6 +160,14 @@
     <Compile Include="Migrations\201607200807127_OrderIdTdata.Designer.cs">
       <DependentUpon>201607200807127_OrderIdTdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607240738503_feedback.cs" />
+    <Compile Include="Migrations\201607240738503_feedback.Designer.cs">
+      <DependentUpon>201607240738503_feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607241053063_FeedbackData.cs" />
+    <Compile Include="Migrations\201607241053063_FeedbackData.Designer.cs">
+      <DependentUpon>201607241053063_FeedbackData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -491,6 +499,8 @@
     <Content Include="Views\TData\Create.cshtml" />
     <Content Include="Views\TData\Edit.cshtml" />
     <Content Include="Views\TData\Delete.cshtml" />
+    <Content Include="Views\Home\Feedback.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -514,6 +524,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607200807127_OrderIdTdata.resx">
       <DependentUpon>201607200807127_OrderIdTdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607240738503_feedback.resx">
+      <DependentUpon>201607240738503_feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607241053063_FeedbackData.resx">
+      <DependentUpon>201607241053063_FeedbackData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
