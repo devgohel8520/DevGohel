@@ -38,12 +38,12 @@ namespace DevGohel.Controllers.Admin
 
             if (Search != null)
             {
-                var model = _db.Topics.Where(d => d.Name.Contains(Search) && d.TopicType == TopicType.Topic && d.AuthorId == UserId).OrderByDescending(o => o.Name).ToList();
+                var model = _db.Topics.Where(d => d.Name.Contains(Search) && d.TopicType == TopicType.Topic && d.AuthorId == UserId).OrderBy(o => o.Created).ToList();
                 return View(model.ToPagedList(page ?? 1, 10));
             }
             else
             {
-                var model = _db.Topics.OrderByDescending(d => d.Name).ToList();
+                var model = _db.Topics.OrderBy(d => d.Created).ToList();
                 return View(model.ToPagedList(page ?? 1, 10));
             }
         }
@@ -129,14 +129,14 @@ namespace DevGohel.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TopicId,AuthorId,Name,Ename,TopicType,BgColor,TxColor,LabelId,Created")] Topic topic)
+        public ActionResult Edit([Bind(Include = "TopicId,AuthorId,Name,Ename,TopicType,BgColor,TxColor,LabelId")] Topic topic)
         {
             if (!GetCookiesInformation())
                 return RedirectToAction("Login", "Author", null);
 
             topic.IsActive = true;
             topic.TopicType = TopicType.Topic;
-
+            topic.Created = DateTime.Now;
             if (ModelState.IsValid)
             {
                 if (userCookie == null)

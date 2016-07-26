@@ -16,7 +16,7 @@ namespace DevGohel.Models
         public DbSet<Sponser> Sponsers { get; set; }
         public DbSet<TDataFile> TDataFiles { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
-
+        public DbSet<UploadFile> UploadFiles { get; set; }
     }
 
     public class Author
@@ -160,7 +160,37 @@ namespace DevGohel.Models
         public bool Status { get; set; }
     }
 
+    public class UploadFile
+    {
+        public long UploadFileId { get; set; }
+        [Required(ErrorMessage = "*")]
+        public string FileName { get; set; }
+        [Required(ErrorMessage = "*")]
+        public string FilePath { get; set; }
+        [Required(ErrorMessage = "*")]
+        public FileExtesion FExtension { get; set; }
+        public DateTime Created { get; set; }
+        public bool IsActive { get; set; }
+    }
 
+    public class ErrorList
+    {
+        public int Key { get; set; }
+        public string Value { get; set; }
+        public string Message { get; set; }
+    }
+
+    public enum FileExtesion
+    {
+        PDF,
+        TXT,
+        DOC,
+        DOCX,
+        PPT,
+        PPTX,
+        ZIP,
+        RAR
+    }
     public enum TopicType
     {
         Topic,

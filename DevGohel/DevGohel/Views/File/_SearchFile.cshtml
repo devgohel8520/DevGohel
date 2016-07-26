@@ -1,0 +1,31 @@
+﻿@using PagedList
+@model IPagedList<DevGohel.Models.UploadFile>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FExtension)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            <a class="btn btn-default btn-xs" href="@Url.Action("Edit", "File", new { id = item.UploadFileId })">
+                <span class="glyphicon glyphicon-edit"></span> Edit
+            </a>
+            <a class="btn btn-default btn-xs" href="@Url.Action("Delete", "File", new { id = item.UploadFileId })">
+                <span class="glyphicon glyphicon-remove"></span> Delete
+            </a>
+            <a class="btn btn-default btn-xs" onclick="copyToClipboard(this);" data-loading-text="@Server.MapPath("~/Content/Files/"+item.FilePath)">
+                <span class="glyphicon glyphicon-copy"></span> Copy
+            </a>
+        </td>
+    </tr>
+}

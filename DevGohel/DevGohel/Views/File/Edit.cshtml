@@ -1,0 +1,110 @@
+﻿@model DevGohel.Models.UploadFile
+
+@{
+    ViewBag.Title = "Add File";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-start-admin">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Edit File</h4>
+        </div>
+        <div class="col-md-12">
+            @using (Ajax.BeginForm("Edit", new AjaxOptions { }))
+            {
+                <div class="alert-danger error-list">
+                    <div id="errorD" style="padding:10px; margin-bottom:20px; display:none;">
+
+                    </div>
+                </div>
+
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(d => d.UploadFileId)
+                <div class="form-group input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                    <input id="UploadFile" name="UploadFile" type="file" class="form-control" />
+                </div>
+                <div class="form-group input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control", @placeholder = "FILE NAME" } })
+                    @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                    @Html.EditorFor(model => model.FilePath, new { htmlAttributes = new { @class = "form-control", @placeholder = "PATH OF UPLOADED FILE", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger form-control-feedback" })
+                </div>
+                <div class="form-group input-group input-group-lg">
+                    <span class="input-group-addon">
+                        @Html.EditorFor(model => model.IsActive)
+                    </span>
+                    <div class="form-control">
+                        Status
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <input id="submit" type="button" value="Edit" onclick="submitUniversal(this, '@Url.Action("FIndex","File")');" class="btn btn-success" />
+                    <a href="@Url.Action("FIndex", "File")" class="btn btn-default">
+                        Back
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var errorDiv = $("#errorD");
+
+            $('#UploadFile').on('change', function (e) {
+
+                $("#submit").attr("disabled", "disabled");
+
+                $("input#FilePath").val("");
+                var files = e.target.files;
+                if (files.length > 0) {
+                    if (window.FormData !== undefined) {
+                        var data = new FormData();
+                        for (var x = 0; x < files.length; x++) {
+                            data.append("file" + x, files[x]);
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("FileUpload", "File")',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (result) {
+                                var items = '';
+                                $.each(data, function (i, item) {
+                                    if (result.Value === "true") {
+                                        $("input#FilePath").val(result.Message);
+                                    }
+                                    else {
+                                        errorDiv.text(result.Message);
+                                    }
+                                });
+                                $("#submit").removeAttr("disabled");
+                            },
+                            error: function (xhr, status, p3, p4) {
+                                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                                if (xhr.responseText && xhr.responseText[0] == "{")
+                                    err = JSON.parse(xhr.responseText).Message;
+                                errorDiv.text(err);
+                                $("#submit").removeAttr("disabled");
+                            }
+                        });
+                    } else {
+                        errorDiv.text("This browser doesn't support HTML5 file uploads!");
+                        $("#submit").removeAttr("disabled");
+                    }
+                }
+            });
+
+        });
+    </script>
+}

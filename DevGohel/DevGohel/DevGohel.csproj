@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Admin\AuthorController.cs" />
+    <Compile Include="Controllers\Admin\FileController.cs" />
     <Compile Include="Controllers\Admin\LabelController.cs" />
     <Compile Include="Controllers\Admin\ProfileController.cs" />
     <Compile Include="Controllers\Admin\SponserController.cs" />
@@ -167,6 +168,14 @@
     <Compile Include="Migrations\201607241053063_FeedbackData.cs" />
     <Compile Include="Migrations\201607241053063_FeedbackData.Designer.cs">
       <DependentUpon>201607241053063_FeedbackData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607261029440_uploadfile.cs" />
+    <Compile Include="Migrations\201607261029440_uploadfile.Designer.cs">
+      <DependentUpon>201607261029440_uploadfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607261124318_Filepath.cs" />
+    <Compile Include="Migrations\201607261124318_Filepath.Designer.cs">
+      <DependentUpon>201607261124318_Filepath.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookDbContext.cs" />
@@ -501,6 +510,11 @@
     <Content Include="Views\TData\Delete.cshtml" />
     <Content Include="Views\Home\Feedback.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\File\FIndex.cshtml" />
+    <Content Include="Views\File\_SearchFile.cshtml" />
+    <Content Include="Views\File\Create.cshtml" />
+    <Content Include="Views\File\Edit.cshtml" />
+    <Content Include="Views\File\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -530,6 +544,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607241053063_FeedbackData.resx">
       <DependentUpon>201607241053063_FeedbackData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261029440_uploadfile.resx">
+      <DependentUpon>201607261029440_uploadfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261124318_Filepath.resx">
+      <DependentUpon>201607261124318_Filepath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,81 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DevGohel.Models.UploadFile>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "searchtableResult",
+        HttpMethod = "Get",
+        LoadingElementId = "divLoading"
+    };
+}
+<div class="content-start-admin">
+    <div class="content-lable">
+        <div id="findme" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-search"></i> Search</div>
+        @Html.ActionLink("+ Add", "Create", "File", new { @class = "btn btn-danger btn-xs" })
+    </div>
+    <div id="searchbar" style="display:none;">
+        @using (Ajax.BeginForm("_SearchFile", options))
+        {
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a class="btn btn-default"><i class="glyphicon glyphicon-search"></i></a>
+                </span>
+                <input id="Search" name="Search" type="text" class="form-control" placeholder="Search your file name">
+                <span class="input-group-btn">
+                    <input id="submit" type="submit" value="Search" class="btn btn-default" />
+                </span>
+            </div>
+        }
+    </div>
+    <div>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().FileName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().FExtension)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Created)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().IsActive)
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="searchtableResult">
+                @Html.Action("_SearchFile", new { Search = "" })
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 text-center">
+        @Html.PagedListPager(Model, page => Url.Action("FIndex", new { page }))
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("div#findme").on("click", function () {
+                $("div#searchbar").toggle();
+            });
+        });
+
+        function copyToClipboard(text) {
+            console.log($(text).attr("data-loading-text"));
+            window.prompt("Copy Path: ",$(text).attr("data-loading-text"));
+        }
+
+
+    </script>
+}

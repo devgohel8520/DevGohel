@@ -202,13 +202,13 @@ namespace DevGohel.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile([Bind(Include = "TdataId,Name,Body,OrderId,ExtraText,Type,TopicId,Created")] TData tData)
+        public ActionResult EditProfile([Bind(Include = "TdataId,Name,Body,OrderId,ExtraText,Type,TopicId")] TData tData)
         {
             if (!GetCookiesInformation())
                 return RedirectToAction("Login", "Admin", null);
 
             tData.IsActive = true;
-
+            tData.Created = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _db.Entry(tData).State = EntityState.Modified;

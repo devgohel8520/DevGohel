@@ -4,7 +4,7 @@
 *
 {
     font-family:'Century Gothic';
-    font-size:12px;
+    font-size:14px;
 }
 .top-twenty
 {
@@ -25,11 +25,14 @@
    margin: 0 !important;
 }
 
-.ellipsetext {
-    overflow: hidden;
-    text-overflow:ellipsis;
-    width:150px;
-    height:50px;
+.table {
+  table-layout:fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .top-menu{
@@ -88,10 +91,10 @@
     font-size:14px;
 }
 .content-data div.head{
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
     color:#566573;
-    margin-bottom:3px;
+    margin-bottom:5px;
 }
 
 .content-data-youtube
@@ -215,4 +218,12 @@ a.boxi{
     border-bottom:1px solid #e3e4e8;
 }
    
+}
+
+
+/*Home Background*/
+.home-Background {
+    font-family: 'Century Gothic';
+    background: linear-gradient( to right, #00A1DB 50%, #FFFFFF 50%);
+    color:#000;
 }

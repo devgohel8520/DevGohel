@@ -5,9 +5,9 @@
     var anyError = false;
 
     $form.find("input").each(function () {
-        if (!validator.element(this)) { // validate every input element inside this step
-            anyError = true;
-        }
+            if (!validator.element(this)) { // validate every input element inside this step
+                anyError = true;
+            }
     });
 
     if (anyError)
@@ -16,6 +16,7 @@
         return true;
 
 }
+
 
 function submitContact(btnSubmit) {
 
@@ -101,13 +102,14 @@ function GetMaxNumber(urlAction) {
 }
 
 function CreateProfileData(btnSubmit) {
-
     tinyMCE.triggerSave();
 
     $("#Body").html($("#Body_ifr").html());
 
     if (!validateForm(btnSubmit))
         return false;
+
+    console.log(btnSubmit);
 
     var btnSubmitvar = $(btnSubmit);
 

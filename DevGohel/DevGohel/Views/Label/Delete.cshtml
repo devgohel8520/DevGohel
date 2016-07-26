@@ -21,9 +21,6 @@
 
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.LabelId)
-                <p>
-                    Are you sure want to remove this?
-                </p>
                 <div class="form-group input-group input-group-lg">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "ENTER LABLE NAME" } })
